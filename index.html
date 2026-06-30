@@ -398,8 +398,6 @@ a { text-decoration: none; color: inherit; }
   object-fit: cover;
   display: block;
 }
-.hero-img-placeholder-icon { color: var(--sage); opacity: 0.35; }
-.hero-img-placeholder-icon svg { width: 64px; height: 64px; }
 
 .hero-badge {
   margin: 20px;
@@ -447,18 +445,6 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   overflow: hidden;
 }
-.doctor-img-placeholder {
-  width: 100%;
-  aspect-ratio: 3/4;
-  background: linear-gradient(160deg, var(--sage-pale) 0%, #c4d8c9 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.doctor-img-placeholder svg { width: 52px; height: 52px; opacity: 0.3; color: var(--sage); }
-.doctor-img-placeholder span { font-size: 11px; color: var(--sage-mid); opacity: 0.6; text-transform: uppercase; letter-spacing: 0.06em; }
 .doctor-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
 .doctor-img-caption {
   position: absolute;
@@ -815,7 +801,7 @@ footer {
   .hero-right { min-height: 420px; }
   .doctor-section { grid-template-columns: 1fr; }
   .doctor-visual { border-right: none; border-bottom: 1px solid var(--rule); }
-  .doctor-img-placeholder { aspect-ratio: 16/9; }
+  .doctor-img { aspect-ratio: 16/9; }
   .doctor-content { padding: 56px 40px; }
   .services-header { flex-direction: column; align-items: flex-start; padding: 56px 40px 40px; }
   .services-intro { text-align: left; }
@@ -960,12 +946,7 @@ footer {
 
   <div class="hero-right">
     <div class="hero-img-area">
-      <!-- Replace src with your clinic photo -->
-      <!-- <img src="images/clinic.jpg" alt="Apex Family Healthcare Clinic"> -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
-        <svg class="hero-img-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span style="font-size:12px;color:var(--sage);opacity:0.5;text-transform:uppercase;letter-spacing:.06em">Clinic Photo</span>
-      </div>
+      <img src="images/clinic.jpg" alt="Apex Family Healthcare Clinic" class="hero-img">
     </div>
     <div class="hero-badge">
       <div class="badge-dot"></div>
@@ -980,11 +961,7 @@ footer {
 <!-- DOCTOR SECTION -->
 <section class="doctor-section" id="about">
   <div class="doctor-visual">
-    <!-- Replace with: <img src="images/doctor.jpg" alt="Dr. Rohan Joshi" class="doctor-img"> -->
-    <div class="doctor-img-placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <span>Doctor Photo</span>
-    </div>
+    <img src="images/doctor.jpg" alt="Dr. Rohan Joshi" class="doctor-img">
     <div class="doctor-img-caption">
       <strong>Dr. Rohan Joshi</strong>
       <span>MBBS, MD (Internal Medicine)</span>
@@ -1116,8 +1093,6 @@ footer {
   </div>
 
   <div class="map-block">
-    <!-- Replace with a real Google Maps embed src -->
-    <!-- <iframe src="https://maps.google.com/..." allowfullscreen loading="lazy"></iframe> -->
     <div class="map-placeholder">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <span>Map Placeholder</span>
@@ -1159,7 +1134,6 @@ footer {
     const span = document.createElement('span');
     span.className = 'word';
     span.style.animationDelay = (0.3 + i * 0.07) + 's';
-    // 'trust,' gets italic+sage
     if (w === 'trust,') {
       const em = document.createElement('em');
       em.textContent = w;
@@ -1181,13 +1155,9 @@ const sections = ['about','services','location'];
 window.addEventListener('scroll', function () {
   const y = window.scrollY;
 
-  // Nav style
   nav.classList.toggle('scrolled', y > 20);
-
-  // FAB visibility
   fab.classList.toggle('visible', y > 400);
 
-  // Active nav link
   let active = '';
   for (const id of sections) {
     const el = document.getElementById(id);
